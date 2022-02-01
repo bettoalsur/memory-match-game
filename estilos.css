@@ -1,0 +1,46 @@
+
+body {
+    background-color: lightgreen;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    font-family: Roboto;
+    font-size: 56px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 66px;
+    letter-spacing: -0.004em;
+    text-align: left;
+
+    color: #75B79E;
+
+    text-align: center;
+    vertical-align: Top;
+    letter-spacing: -0.4%;
+
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+.cartas {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.carta {
+    background-color: #A7E9AF;
+    border: 1px solid #99CEA8;
+    border-radius: 5px;
+
+    width: 117px;
+    height: 146px;
+
+    margin: 17px;
+}
