@@ -18,6 +18,12 @@ for (let i = 0; i < num_cartas ; i++) {
 var elemento = document.querySelector(".cartas");
 elemento.innerHTML = aux;
 
+var cartas = elemento.children;
+
+for (let carta of cartas) {
+    carta.innerHTML = "<img src='files/front.png'>"
+}
+
 centralizarCartas();
 
 // Centraliza as cartas na janela

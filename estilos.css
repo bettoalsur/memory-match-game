@@ -1,6 +1,6 @@
 
 body {
-    background-color: lightgreen;
+    background-color: #eef9bf;
     width: 100vw;
     display: flex;
     flex-direction: column;
@@ -35,6 +35,11 @@ h1 {
 }
 
 .carta {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     background-color: #A7E9AF;
     border: 1px solid #99CEA8;
     border-radius: 5px;
@@ -43,4 +48,9 @@ h1 {
     height: 146px;
 
     margin: 17px;
+}
+
+.carta img {
+    width: 100px;
+    height: auto;
 }
