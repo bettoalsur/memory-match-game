@@ -56,6 +56,7 @@ window.addEventListener("resize", function () {
 var indexCards = [];
 var compare = [null,null];
 var impedeSelecao = false;
+var contadorJogadas = 0;
 
 var cont = 0;
 for (let i = 0 ; i < num_cartas ; i += 2) {
@@ -101,6 +102,9 @@ function handle_click(elemento) {
             setTimeout(compararCartas,1000);
         }
 
+        // aumenta o numero de jogadas em 1
+        contadorJogadas++;
+
     }
 
 }
@@ -112,6 +116,7 @@ function compararCartas(){
 
         document.querySelector("#carta"+compare[0]).style.borderColor = "#32B72F";
         document.querySelector("#carta"+compare[1]).style.borderColor = "#32B72F";
+        verificarFimJogo();
 
     } else {
         // cartas diferentes
@@ -131,6 +136,24 @@ function compararCartas(){
     impedeSelecao = false;
 
 }
+
+// verificar fim do jogo
+
+function verificarFimJogo() {
+
+    var cont = 0;
+    for (let i = 0 ; i < verificadores.length ; i++ ){
+        if (!verificadores[i]) {
+            cont++;
+        }
+    }
+
+    if (cont == verificadores.length) {
+        var mensagem = "Você ganhou em "+contadorJogadas+" jogadas!";
+        setTimeout( alert(mensagem) , 2000 );
+    }
+}
+
 
 // animacao para virar a carta
 
