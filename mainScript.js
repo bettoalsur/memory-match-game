@@ -3,8 +3,8 @@
 
 var num_cartas = 0;
 
-while( num_cartas < 2 || num_cartas > 14 || num_cartas%2 != 0 ) {
-    num_cartas = prompt("Digite um número de cartas par entre 2 e 14");
+while( num_cartas < 4 || num_cartas > 14 || num_cartas%2 != 0 ) {
+    num_cartas = prompt("Digite um número de cartas par entre 4 e 14");
     num_cartas = parseFloat(num_cartas);
 }
 
@@ -86,7 +86,7 @@ function handle_click(elemento) {
 
         // vira a carta
         var index = indexCards[num];
-        elemento.querySelector("img").style.content = "url('files/logo"+index+".svg')";
+        animarVirarCarta(elemento,index);
 
         // armazena a carta no comparador
         if (compare[0] == null) {
@@ -98,13 +98,11 @@ function handle_click(elemento) {
         // compara as cartas se o comparador estiver cheio
         if ( compare[0] != null && compare[1] != null ) {
             impedeSelecao = true;
-            setTimeout(compararCartas,1250);
+            setTimeout(compararCartas,1000);
         }
 
     }
 
-    
-    
 }
 
 function compararCartas(){
@@ -119,10 +117,12 @@ function compararCartas(){
         // cartas diferentes
 
         verificadores[compare[0]] = true;
-        document.querySelector("#carta"+compare[0]+" img").style.content = "url('files/front.png')";
+        var elemento = document.querySelector("#carta"+compare[0]);
+        animarDesvirarCarta(elemento);
 
         verificadores[compare[1]] = true;
-        document.querySelector("#carta"+compare[1]+" img").style.content = "url('files/front.png')";
+        var elemento = document.querySelector("#carta"+compare[1]);
+        animarDesvirarCarta(elemento);
 
     }
 
@@ -132,3 +132,28 @@ function compararCartas(){
 
 }
 
+// animacao para virar a carta
+
+function animarVirarCarta(elemento,index) {
+    elemento.style.transform = "rotateY(-90deg)";
+    setTimeout(animarVirarCartaP2(elemento,index),250);
+}
+
+function animarVirarCartaP2(elemento,index) {
+    elemento.querySelector("img").style.content = "url('files/logo"+index+".svg')";
+    elemento.querySelector("img").style.transform = "rotateY(-180deg)";
+    elemento.style.transform = "rotateY(-180deg)";
+}
+
+// animacao para des-virar a carta
+
+function animarDesvirarCarta(elemento) {
+    elemento.style.transform = "rotateY(-90deg)";
+    setTimeout(animarDesvirarCartaP2(elemento),250);
+}
+
+function animarDesvirarCartaP2(elemento) {
+    elemento.querySelector("img").style.content = "url('files/front.png')";
+    elemento.querySelector("img").style.transform = "rotateY(0deg)";
+    elemento.style.transform = "rotateY(0deg)";
+}
