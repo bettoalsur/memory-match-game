@@ -55,6 +55,7 @@ window.addEventListener("resize", function () {
 
 var indexCards = [];
 var compare = [null,null];
+var impedeSelecao = false;
 
 var cont = 0;
 for (let i = 0 ; i < num_cartas ; i += 2) {
@@ -80,7 +81,7 @@ function handle_click(elemento) {
 
     var num = parseFloat( elemento.id.replace('carta','') );
 
-    if (verificadores[num]) {
+    if ( verificadores[num] && !impedeSelecao ) {
         verificadores[num] = false;
 
         // vira a carta
@@ -93,11 +94,16 @@ function handle_click(elemento) {
         } else if (compare[1] == null) {
             compare[1] = num;
         } 
+
+        // compara as cartas se o comparador estiver cheio
+        if ( compare[0] != null && compare[1] != null ) {
+            impedeSelecao = true;
+            setTimeout(compararCartas,1250);
+        }
+
     }
 
-    if ( compare[0] != null && compare[1] != null ) {
-        setTimeout(compararCartas,1300);
-    }
+    
     
 }
 
@@ -122,6 +128,7 @@ function compararCartas(){
 
     compare[0] = null;
     compare[1] = null;
+    impedeSelecao = false;
 
 }
 
