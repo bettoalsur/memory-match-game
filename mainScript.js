@@ -55,7 +55,6 @@ window.addEventListener("resize", function () {
 
 var indexCards = [];
 var compare = [null,null];
-var puntero = 0;
 
 var cont = 0;
 for (let i = 0 ; i < num_cartas ; i += 2) {
@@ -68,12 +67,61 @@ indexCards.sort( function () {
     return .5 - Math.random();
 } );
 
+// cria array com booleanos que verificam se a carta ainda pode ser virada
+
+var verificadores = [];
+for (let i = 0 ; i < num_cartas ; i ++) {
+    verificadores.push(true);
+}
+
 // gestiona o click nas cartas
 
 function handle_click(elemento) {
 
     var num = parseFloat( elemento.id.replace('carta','') );
-    var index = indexCards[num];
 
-    elemento.querySelector("img").style.content = "url('files/logo"+index+".svg')";
+    if (verificadores[num]) {
+        verificadores[num] = false;
+
+        // vira a carta
+        var index = indexCards[num];
+        elemento.querySelector("img").style.content = "url('files/logo"+index+".svg')";
+
+        // armazena a carta no comparador
+        if (compare[0] == null) {
+            compare[0] = num;
+        } else if (compare[1] == null) {
+            compare[1] = num;
+        } 
+    }
+
+    if ( compare[0] != null && compare[1] != null ) {
+        setTimeout(compararCartas,1300);
+    }
+    
 }
+
+function compararCartas(){
+
+    if ( indexCards[compare[0]] == indexCards[compare[1]] ) {
+        // cartas iguais 
+
+        document.querySelector("#carta"+compare[0]).style.borderColor = "#32B72F";
+        document.querySelector("#carta"+compare[1]).style.borderColor = "#32B72F";
+
+    } else {
+        // cartas diferentes
+
+        verificadores[compare[0]] = true;
+        document.querySelector("#carta"+compare[0]+" img").style.content = "url('files/front.png')";
+
+        verificadores[compare[1]] = true;
+        document.querySelector("#carta"+compare[1]+" img").style.content = "url('files/front.png')";
+
+    }
+
+    compare[0] = null;
+    compare[1] = null;
+
+}
+
