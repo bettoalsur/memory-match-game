@@ -77,3 +77,32 @@ h1 {
 }
 
 
+/* Bonus */
+
+.info-jogo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.tempo,
+.puntuacao {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 50px;
+
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+
+ion-icon,
+.puntuacao p, 
+.tempo p {
+    font-weight: bold;
+    font-size: 20px;
+    color: rgb(9, 105, 9);
+
+    margin-right: 5px;
+}

@@ -63,6 +63,9 @@ function centralizarCartas() {
 
     var elemento = document.querySelector(".cartas");
     elemento.style.margin = "auto " + margem + "px";
+
+    var elemento = document.querySelector(".info-jogo");
+    elemento.style.width = Math.min(num_cartas,cartasPorTela)*tamCarta - 34 + "px";
 }
 
 centralizarCartas();
@@ -101,6 +104,9 @@ function handle_click(elemento) {
 
         // aumenta o numero de jogadas em 1
         contadorJogadas++;
+
+        // atualiza puntuacao
+        atualizarPuntuacao();
 
         // compara as cartas se o comparador estiver cheio
         if ( compare[0] != null && compare[1] != null ) {
@@ -161,4 +167,9 @@ function verificarFimJogo() {
         var mensagem = "Você ganhou em "+contadorJogadas+" jogadas!";
         alert(mensagem);
     }
+}
+
+function atualizarPuntuacao() {
+    var elemento = document.querySelector(".puntuacao p");
+    elemento.innerHTML = contadorJogadas;
 }
