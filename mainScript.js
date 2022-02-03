@@ -107,11 +107,11 @@ function verificarFimJogo() {
         alert(mensagem);
 
         var novoJogo = "";
-        while (novoJogo!=="s" && novoJogo!=="n") {
+        while (novoJogo!=="s" && novoJogo!=="S" && novoJogo!=="n" && novoJogo!=="N") {
             novoJogo = prompt("Deseja jogar novamente? (s ou n)");
         }
 
-        if (novoJogo == "s") {
+        if (novoJogo == "s" || novoJogo == "S") {
             comecarNovoJogo();
         }
 
