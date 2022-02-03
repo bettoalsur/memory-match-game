@@ -91,7 +91,7 @@ h1 {
     justify-content: space-between;
     align-items: center;
 
-    width: 60px;
+    width: 70px;
 
     margin-top: 1px;
     margin-bottom: 1px;
@@ -106,10 +106,15 @@ ion-icon {
     margin-right: 5px;
 }
 
-.puntuacao p, 
-.tempo p {
-    font-family: Roboto;
+.puntuacao p {
     font-weight: bold;
-    font-size: 20px;
+    font-size: 18px;
+    font-family: Roboto;
+    color: rgb(9, 105, 9);
+}
+
+.tempo p {
+    font-size: 16px;
+    font-family: Roboto;
     color: rgb(9, 105, 9);
 }

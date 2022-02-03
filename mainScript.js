@@ -1,6 +1,7 @@
 
 // relogio
 var T0;
+var T;
 var jogoAcabou = false;
 
 // Pede ao usuario o numero de cartas
@@ -171,16 +172,11 @@ function verificarFimJogo() {
     }
 
     if (cont == verificador.length) {
-        var mensagem = "Você ganhou em "+contadorJogadas+" jogadas!";
+        var mensagem = "Você ganhou em "+contadorJogadas+" jogadas e em "+ strTempo() + " minutos";
 
         jogoAcabou = true;
         alert(mensagem);
     }
-}
-
-function atualizarPuntuacao() {
-    var elemento = document.querySelector(".puntuacao p");
-    elemento.innerHTML = contadorJogadas;
 }
 
 function startChronometer(){
@@ -191,13 +187,36 @@ function startChronometer(){
 function partialTime() {
     if (!jogoAcabou){
         var T1 = new Date();
-        var T = (T1 - T0)/1000;
-        atualizarRelogio(T)
+
+        // tempo transcorrido em segundos (int)
+        T = Math.trunc( (T1 - T0)/1000 );
+
+        atualizarRelogio();
         setTimeout(partialTime,1000);
     }
 }
 
-function atualizarRelogio(T) {
+function atualizarRelogio() {
     var elemento = document.querySelector(".tempo p");
-    elemento.innerHTML = Math.trunc(T);
+    elemento.innerHTML = strTempo();
+}
+
+function atualizarPuntuacao() {
+    var elemento = document.querySelector(".puntuacao p");
+    elemento.innerHTML = contadorJogadas;
+}
+
+function strTempo() {
+    var seg = T%60;
+    var min = Math.trunc(T/60);
+
+    if (seg < 10){
+        seg = "0"+seg;
+    }
+
+    if (min < 10){
+        min = "0"+min;
+    }
+
+    return min+":"+seg;
 }
