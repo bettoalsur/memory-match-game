@@ -1,90 +1,15 @@
 
-// relogio
-var T0;
-var T;
-var jogoAcabou = false;
-
-// Pede ao usuario o numero de cartas
-
-var num_cartas = 0;
-
-while( num_cartas < 4 || num_cartas > 14 || num_cartas%2 != 0 ) {
-    num_cartas = prompt("Digite um número de cartas par entre 4 e 14");
-    num_cartas = parseFloat(num_cartas);
-}
-
-// Cria variaveis do jogo
-
-var indexConteudo = [];
-var verificador = [];
-
-var compare = [null,null];
-var impedeSelecao = false;
-var contadorJogadas = 0;
-
-var cont = 0;
-for (let i = 0 ; i < num_cartas ; i += 2) {
-    indexConteudo.push(cont);
-    indexConteudo.push(cont);
-    verificador.push(true);
-    verificador.push(true);
-    cont ++;
-}
-
-indexConteudo.sort( function () {
-    return 0.5 - Math.random();
-} );
-
-// Cria as cartas HTML
-
-var aux = "";
-for (let i = 0; i < num_cartas ; i++) {
-
-    var logo = indexConteudo[i];
-
-    aux += `
-    <div id="carta${i}" class="carta" onclick="handle_click(this)" >
-        <div class="verso face">
-            <img src="files/front.png" alt="">
-        </div>
-        <div class="frente face virada">
-            <img src="files/logo${logo}.svg" alt="">
-        </div>
-    </div>
-    `;
-}
-
-var elemento = document.querySelector(".cartas");
-elemento.innerHTML = aux;
-
-
-// Centraliza as cartas na janela
-
-function centralizarCartas() {
-    var tamCarta = 34+117+2;
-    var cartasPorTela = Math.trunc( window.innerWidth/tamCarta );
-    var larguraFila = cartasPorTela*tamCarta;
-    var margem = Math.trunc( ( window.innerWidth - larguraFila )/2 );
-
-    var elemento = document.querySelector(".cartas");
-    elemento.style.margin = "auto " + margem + "px";
-
-    var elemento = document.querySelector(".info-jogo");
-    elemento.style.width = Math.min(num_cartas,cartasPorTela)*tamCarta - 34 + "px";
-}
-
-centralizarCartas();
-
 // Centraliza as cartas se ha alteracoes na janela do navegador
 
 window.addEventListener("resize", function () {
     centralizarCartas();
 });
 
-
 ////////////////////
 // Logica do jogo //
 ////////////////////
+
+comecarNovoJogo();
 
 // gestiona o click nas cartas
 
@@ -172,10 +97,24 @@ function verificarFimJogo() {
     }
 
     if (cont == verificador.length) {
-        var mensagem = "Você ganhou em "+contadorJogadas+" jogadas e em "+ strTempo() + " minutos";
 
+        // Jogo acabou
+        var T1 = new Date();
+        T = Math.trunc( (T1 - T0)/1000 );
+
+        var mensagem = "Você ganhou em "+contadorJogadas+" jogadas e em "+ strTempo() + " minutos";
         jogoAcabou = true;
         alert(mensagem);
+
+        var novoJogo = "";
+        while (novoJogo!=="s" && novoJogo!=="n") {
+            novoJogo = prompt("Deseja jogar novamente? (s ou n)");
+        }
+
+        if (novoJogo == "s") {
+            comecarNovoJogo();
+        }
+
     }
 }
 

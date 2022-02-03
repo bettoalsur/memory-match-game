@@ -85,6 +85,10 @@ h1 {
     align-items: flex-end;
 }
 
+.oculto {
+    display: none;
+}
+
 .tempo,
 .puntuacao {
     display: flex;
