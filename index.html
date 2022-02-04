@@ -1,42 +1,39 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parrot Card Game</title>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Parrot Card Game</title>
 
-    <link
-      href="https://fonts.googleapis.com/css?family=Roboto"
-      rel="stylesheet"
-    />
+        <link
+            href="https://fonts.googleapis.com/css?family=Roboto"
+            rel="stylesheet"
+        />
 
-    <link rel="stylesheet" href="reset.css" />
-    <link rel="stylesheet" href="estilos.css" />
+        <link rel="stylesheet" href="reset.css" />
+        <link rel="stylesheet" href="estilos.css" />
+    </head>
+    <body>
+        <h1>Parrot Card Game</h1>
 
-</head>
-<body>
-    <h1>Parrot Card Game</h1>
-
-    <div class="info-jogo oculto">
-        <div class="tempo">
-            <ion-icon name="time-outline"></ion-icon>
-            <p></p>
+        <div class="info-jogo oculto">
+            <div class="tempo">
+                <ion-icon name="time-outline"></ion-icon>
+                <p></p>
+            </div>
+            <div class="puntuacao">
+                <ion-icon name="game-controller-outline"></ion-icon>
+                <p></p>
+            </div>
         </div>
-        <div class="puntuacao">
-            <ion-icon name="game-controller-outline"></ion-icon>
-            <p></p>
+
+        <div class="cartas">
+            <!-- vao ser criadas cartas com JS -->
         </div>
-    </div>
 
-    <div class="cartas">
-        <!-- vao ser criadas cartas com JS -->
-    </div>
-
-    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
-    <script src="startNewGame.js"></script>
-    <script src="mainScript.js"></script>
-    
-</body>
+        <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+        <script src="startNewGame.js"></script>
+        <script src="mainScript.js"></script>
+    </body>
 </html>

@@ -1,4 +1,3 @@
-
 // Variaveis do jogo //
 
 var num_cartas;
@@ -8,7 +7,6 @@ var verificador;
 var compare;
 var impedeSelecao;
 
-
 // Variaveis informacao //
 
 var contadorJogadas;
@@ -17,12 +15,11 @@ var T;
 var jogoAcabou;
 
 function comecarNovoJogo() {
-
     // Pede ao usuario o numero de cartas
 
     num_cartas = 0;
 
-    while( num_cartas < 4 || num_cartas > 14 || num_cartas%2 != 0 ) {
+    while (num_cartas < 4 || num_cartas > 14 || num_cartas % 2 != 0) {
         num_cartas = prompt("Digite um número de cartas par entre 4 e 14");
         num_cartas = parseFloat(num_cartas);
     }
@@ -32,36 +29,33 @@ function comecarNovoJogo() {
     indexConteudo = [];
     verificador = [];
 
-    compare = [null,null];
+    compare = [null, null];
     impedeSelecao = false;
     contadorJogadas = 0;
 
     var cont = 0;
-    for (let i = 0 ; i < num_cartas ; i += 2) {
+    for (let i = 0; i < num_cartas; i += 2) {
         indexConteudo.push(cont);
         indexConteudo.push(cont);
         verificador.push(true);
         verificador.push(true);
-        cont ++;
+        cont++;
     }
 
-    indexConteudo.sort( function () {
+    indexConteudo.sort(function () {
         return 0.5 - Math.random();
-    } );
+    });
 
-
-    // Inicializa variaveis das informacoes 
+    // Inicializa variaveis das informacoes
 
     contadorJogadas = 0;
     T = 0;
     jogoAcabou = false;
 
-
     // Cria as cartas HTML
 
     var aux = "";
-    for (let i = 0; i < num_cartas ; i++) {
-
+    for (let i = 0; i < num_cartas; i++) {
         var logo = indexConteudo[i];
 
         aux += `
@@ -79,7 +73,6 @@ function comecarNovoJogo() {
     var elemento = document.querySelector(".cartas");
     elemento.innerHTML = aux;
 
-
     // atualiza as informacoes
     var elemento = document.querySelector(".info-jogo");
     elemento.classList.remove("oculto");
@@ -87,21 +80,20 @@ function comecarNovoJogo() {
     atualizarPuntuacao();
     atualizarRelogio();
 
-
     // Centraliza as cartas na janela
     centralizarCartas();
-
 }
 
 function centralizarCartas() {
-    var tamCarta = 34+117+2;
-    var cartasPorTela = Math.trunc( window.innerWidth/tamCarta );
-    var larguraFila = cartasPorTela*tamCarta;
-    var margem = Math.trunc( ( window.innerWidth - larguraFila )/2 );
+    var tamCarta = 34 + 117 + 2;
+    var cartasPorTela = Math.trunc(window.innerWidth / tamCarta);
+    var larguraFila = cartasPorTela * tamCarta;
+    var margem = Math.trunc((window.innerWidth - larguraFila) / 2);
 
     var elemento = document.querySelector(".cartas");
     elemento.style.margin = "auto " + margem + "px";
 
     var elemento = document.querySelector(".info-jogo");
-    elemento.style.width = Math.min(num_cartas,cartasPorTela)*tamCarta - 34 + "px";
+    elemento.style.width =
+        Math.min(num_cartas, cartasPorTela) * tamCarta - 34 + "px";
 }
