@@ -33,10 +33,17 @@ function comecarNovoJogo() {
     impedeSelecao = false;
     contadorJogadas = 0;
 
+    // escolhe os logos aleatoriamente 
+    var logos = [0,1,2,3,4,5,6];
+    
+    logos.sort(function () {
+        return 0.5 - Math.random();
+    });
+
     var cont = 0;
     for (let i = 0; i < num_cartas; i += 2) {
-        indexConteudo.push(cont);
-        indexConteudo.push(cont);
+        indexConteudo.push(logos[cont]);
+        indexConteudo.push(logos[cont]);
         verificador.push(true);
         verificador.push(true);
         cont++;
